@@ -1,14 +1,16 @@
 import React from 'react';
 
-import GlobalStyles from '../../styles/GlobalStyles';
+import styles from './Layout.module.css';
+
+import Header from '../Header/Header';
 
 const Layout = (props) => {
 	return (
-		<>
-			<GlobalStyles />
+		<div className={styles.Layout}>
 			{/* Toolbar & SideDrawer */}
-			<main>{props.children}</main>
-		</>
+			<Header />
+			<main className={styles.main}>{props.children}</main>
+		</div>
 	);
 };
 

@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
 		case actionTypes.ADD_NOMINATION:
 			return {
 				...state,
-				[state.movies]: [...state.movies, { title: action.movie }],
+				movies: [...state.movies, { title: action.movie }],
 			};
 		case actionTypes.REMOVE_NOMINATION:
 			return {
