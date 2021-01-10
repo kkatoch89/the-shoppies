@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export const axiosFirebase = axios.create({
-	baseURL: 'https://react-my-burger-e5e5e.firebaseio.com/',
+	baseURL: 'https://the-shoppies-a9286-default-rtdb.firebaseio.com/',
 });
 
-export const axiosOMDB = axios.create({
-	baseURL: 'http://www.omdbapi.com/?i=tt3896198&apikey=c1e5066c',
-});
+// export const axiosOMDB = axios.create({
+// 	baseURL: `https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_OMDB_API_KEY}`,
+// });

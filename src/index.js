@@ -9,6 +9,7 @@ import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 import nominationsReducer from './store/reducers/nominations';
+import searchResultsReducer from './store/reducers/searchResults';
 import { Provider } from 'react-redux';
 
 const composeEnhancers =
@@ -18,6 +19,7 @@ const composeEnhancers =
 
 const rootReducer = combineReducers({
 	nominations: nominationsReducer,
+	searchResults: searchResultsReducer,
 });
 
 const store = createStore(
