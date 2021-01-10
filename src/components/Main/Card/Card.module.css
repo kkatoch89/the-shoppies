@@ -1,0 +1,9 @@
+.Card {
+	display: flex;
+	align-items: center;
+	list-style: none;
+}
+
+.btn {
+	height: 2rem;
+}

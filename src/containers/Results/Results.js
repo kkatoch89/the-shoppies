@@ -1,15 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Card from '../../components/Main/Card/Card';
+import * as actions from '../../store/actions/index';
+
 const Results = (props) => {
 	const moviesList = [];
 
-	for (let key in props.searchMoviesList) {
-		moviesList.push({ title: props.searchMoviesList[key].Title, id: key });
+	for (let key in props.moviesSearchResults) {
+		moviesList.push({
+			id: key,
+			title: props.moviesSearchResults[key].Title,
+			year: props.moviesSearchResults[key].Year,
+		});
 	}
 
+	const onClickHandler = (movieId) => {
+		const clickedMovie = props.moviesSearchResults[movieId];
+		props.onAddNomination(movieId, clickedMovie);
+		console.log(movieId, clickedMovie);
+	};
+
 	const moviesListOutput = moviesList.map((movie) => {
-		return <li id={movie.id}>{movie.title}</li>;
+		return (
+			<Card
+				id={movie.id}
+				title={movie.title}
+				year={movie.year}
+				onClickHandler={() => onClickHandler(movie.id)}
+			/>
+		);
 	});
 
 	return (
@@ -22,8 +42,17 @@ const Results = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		searchMoviesList: state.searchResults.movies,
+		moviesSearchResults: state.searchResults.movies,
+		error: state.searchResults.error,
 	};
 };
 
-export default connect(mapStateToProps)(Results);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onAddNomination: (movieId, movie) => {
+			dispatch(actions.addNomination(movieId, movie));
+		},
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

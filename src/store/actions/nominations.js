@@ -1,8 +1,9 @@
 import * as actionTypes from './actionTypes';
 
-export const addNomination = (movie) => {
+export const addNomination = (movieId, movie) => {
 	return {
 		type: actionTypes.ADD_NOMINATION,
+		movieId,
 		movie,
 	};
 };
