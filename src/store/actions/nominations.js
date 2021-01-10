@@ -8,10 +8,10 @@ export const addNomination = (movieId, movie) => {
 	};
 };
 
-export const removeNomination = (movie) => {
+export const removeNomination = (movieId) => {
 	return {
 		type: actionTypes.REMOVE_NOMINATION,
-		movie,
+		movieId,
 	};
 };
 

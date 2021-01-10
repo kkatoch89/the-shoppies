@@ -5,29 +5,28 @@ import * as actions from '../../store/actions/index';
 
 const SearchTitle = (props) => {
 	const [searchInput, setSearchInput] = useState('');
-	const { onSearch } = props;
+	const { onSearch, onClearResults } = props;
 	const inputRef = useRef();
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			if (
-				searchInput === inputRef.current.value &&
-				inputRef.current.value.trim().length !== 0 //In order to avoid unecessary API call on page reload
-			) {
-				// const query = searchInput.trim().length === 0 ? '' : searchInput;
-				const query = searchInput;
-				onSearch(query);
-			}
-		}, 500);
-		return () => {
-			clearTimeout(timer);
-		};
-	}, [searchInput, onSearch]);
+		const refLength = inputRef.current.value.trim().length;
+		if (
+			searchInput === inputRef.current.value &&
+			refLength !== 0 //In order to avoid unecessary API call on page reload
+		) {
+			// const query = searchInput.trim().length === 0 ? '' : searchInput;
+			const query = searchInput;
+			onSearch(query);
+		}
+
+		if (refLength === 0) {
+			onClearResults();
+		}
+	}, [searchInput, onSearch, onClearResults]);
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 		onSearch(searchInput);
-		// setSearchInput('');
 	};
 
 	const onChangeHandler = (e) => {
@@ -61,6 +60,9 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onSearch: (title) => {
 			dispatch(actions.search(title));
+		},
+		onClearResults: () => {
+			dispatch(actions.clearResults());
 		},
 	};
 };

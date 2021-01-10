@@ -27,14 +27,18 @@ const Results = (props) => {
 				id={movie.id}
 				title={movie.title}
 				year={movie.year}
-				onClickHandler={() => onClickHandler(movie.id)}
+				addNomHandler={() => onClickHandler(movie.id)}
 			/>
 		);
 	});
 
 	return (
 		<div>
-			<h2>These are your Results!</h2>
+			<h2>
+				{props.query.trim().length !== 0
+					? `Results for ${props.query}`
+					: "Search for movies you'd like to nominate!"}
+			</h2>
 			<ul>{moviesListOutput}</ul>
 		</div>
 	);
@@ -44,6 +48,7 @@ const mapStateToProps = (state) => {
 	return {
 		moviesSearchResults: state.searchResults.movies,
 		error: state.searchResults.error,
+		query: state.searchResults.query,
 	};
 };
 

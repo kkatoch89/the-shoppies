@@ -3,6 +3,13 @@ import axios from 'axios';
 
 import * as actionTypes from './actionTypes';
 
+export const updateQueryString = (queryString) => {
+	return {
+		type: actionTypes.UPDATE_QUERY_STRING,
+		queryString,
+	};
+};
+
 export const searchReset = () => {
 	return {
 		type: actionTypes.SEARCH_RESET,
@@ -23,6 +30,12 @@ export const searchError = (err) => {
 	};
 };
 
+export const clearResults = () => {
+	return {
+		type: actionTypes.CLEAR_RESULTS,
+	};
+};
+
 export const search = (title) => {
 	return (dispatch) => {
 		axios
@@ -30,15 +43,12 @@ export const search = (title) => {
 				`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${title}`
 			)
 			.then((response) => {
+				dispatch(updateQueryString(title));
 				const movies = {};
 				response.data.Search.forEach((el) => {
 					movies[el.imdbID] = el;
 				});
 				dispatch(searchSuccess(movies));
-				// // dispatch(searchReset());
-				console.log(movies);
-				// const data = response.data;
-				// console.log(response.data.Search);
 			})
 			.catch((error) => {
 				console.log(error);

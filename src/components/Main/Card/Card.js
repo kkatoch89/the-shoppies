@@ -6,7 +6,10 @@ const Card = (props) => {
 	return (
 		<li className={styles.Card}>
 			<h3>{`${props.title} (${props.year})`}</h3>
-			<button className={styles.btn} onClick={props.onClickHandler}>
+			<button
+				className={styles.btn}
+				onClick={props.nominated ? props.removeNomHandler : props.addNomHandler}
+			>
 				{props.nominated ? 'Remove' : 'Nominate'}
 			</button>
 		</li>

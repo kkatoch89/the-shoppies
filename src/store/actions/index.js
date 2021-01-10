@@ -9,4 +9,5 @@ export {
 	searchSuccess,
 	searchError,
 	search,
+	clearResults,
 } from './searchResults';

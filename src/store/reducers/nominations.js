@@ -2,7 +2,17 @@ import * as actionTypes from '../actions/actionTypes';
 // import { updateObject } from '../../shared/utility';
 
 const initialState = {
-	movies: {},
+	movies: [],
+};
+
+const removeMovie = (state, action) => {
+	const updatedList = state.movies.filter((movie) => {
+		return movie.movieId !== action.movieId;
+	});
+	return {
+		...state,
+		movies: updatedList,
+	};
 };
 
 const reducer = (state = initialState, action) => {
@@ -11,18 +21,17 @@ const reducer = (state = initialState, action) => {
 			console.log(action);
 			return {
 				...state,
-				movies: {
+				movies: [
 					...state.movies,
-					[action.movieId]: {
+					{
+						movieId: action.movieId,
 						title: action.movie.Title,
 						year: action.movie.Year,
 					},
-				},
+				],
 			};
 		case actionTypes.REMOVE_NOMINATION:
-			return {
-				...state,
-			};
+			return removeMovie(state, action);
 		default:
 			return state;
 	}

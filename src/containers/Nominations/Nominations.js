@@ -15,13 +15,16 @@ const Nominations = (props) => {
 	// 	console.log(moviesList);
 	// }, [nominatedMovies, moviesList]);
 
-	const displayNominations = Object.keys(nominatedMovies).map((key) => {
+	const displayNominations = nominatedMovies.map((movie) => {
 		return (
 			<Card
-				id={key}
-				title={nominatedMovies[key].title}
-				year={nominatedMovies[key].year}
-				nominated={true}
+				id={movie.movieId}
+				title={movie.title}
+				year={movie.year}
+				nominated
+				removeNomHandler={() => {
+					props.onRemoveNomination(movie.movieId);
+				}}
 			/>
 		);
 	});
@@ -30,9 +33,6 @@ const Nominations = (props) => {
 		<div>
 			<h2>These are your nominations!</h2>
 			<ul>{displayNominations}</ul>
-			<button onClick={() => props.onAddNomination('The Matrix')}>
-				Add Movie
-			</button>
 		</div>
 	);
 };
@@ -46,6 +46,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onAddNomination: (movie) => dispatch(actions.addNomination(movie)),
+		onRemoveNomination: (movieId) =>
+			dispatch(actions.removeNomination(movieId)),
 	};
 };
 
