@@ -45,16 +45,16 @@ export const search = (title) => {
 			.then((response) => {
 				dispatch(updateQueryString(title));
 				const movies = {};
-				console.log(response.data.Search);
-				response.data.Search.forEach((el) => {
-					movies[el.imdbID] = el;
-				});
-				dispatch(searchSuccess(movies));
+				if (response.data.Search) {
+					response.data.Search.forEach((el) => {
+						movies[el.imdbID] = el;
+						dispatch(searchSuccess(movies));
+					});
+				}
 			})
 			.catch((error) => {
 				console.log(error);
 				dispatch(searchError(error));
-				// dispatch(searchReset());
 			});
 	};
 };
