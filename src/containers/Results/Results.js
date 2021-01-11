@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Card from '../../components/Main/Card/Card';
 import * as actions from '../../store/actions/index';
 
 const Results = (props) => {
+	const [nominatedKeys, setNominatedKeys] = useState([]);
 	const moviesList = [];
+	const { nominatedMovies } = props;
+
+	useEffect(() => {
+		const nomKeys = nominatedMovies.map((el) => el.movieId);
+		setNominatedKeys(nomKeys);
+	}, [nominatedMovies]);
 
 	for (let key in props.moviesSearchResults) {
 		moviesList.push({
 			id: key,
 			title: props.moviesSearchResults[key].Title,
 			year: props.moviesSearchResults[key].Year,
+			nominated: nominatedKeys.find((el) => el === key) ? true : null,
 		});
 	}
 
@@ -24,9 +32,10 @@ const Results = (props) => {
 	const moviesListOutput = moviesList.map((movie) => {
 		return (
 			<Card
-				id={movie.id}
+				key={movie.id}
 				title={movie.title}
 				year={movie.year}
+				nominatedMovie={movie.nominated}
 				addNomHandler={() => onClickHandler(movie.id)}
 			/>
 		);
@@ -49,6 +58,7 @@ const mapStateToProps = (state) => {
 		moviesSearchResults: state.searchResults.movies,
 		error: state.searchResults.error,
 		query: state.searchResults.query,
+		nominatedMovies: state.nominations.movies,
 	};
 };
 

@@ -7,18 +7,10 @@ import Card from '../../components/Main/Card/Card';
 const Nominations = (props) => {
 	const { nominatedMovies } = props;
 
-	// const moviesList = [];
-	// useEffect(() => {
-	// 	for (let key in nominatedMovies) {
-	// 		moviesList.push({ id: key, movieInfo: { ...nominatedMovies[key] } });
-	// 	}
-	// 	console.log(moviesList);
-	// }, [nominatedMovies, moviesList]);
-
 	const displayNominations = nominatedMovies.map((movie) => {
 		return (
 			<Card
-				id={movie.movieId}
+				key={movie.movieId}
 				title={movie.title}
 				year={movie.year}
 				nominated
@@ -31,7 +23,7 @@ const Nominations = (props) => {
 
 	return (
 		<div>
-			<h2>These are your nominations!</h2>
+			<h2>Nominations</h2>
 			<ul>{displayNominations}</ul>
 		</div>
 	);
