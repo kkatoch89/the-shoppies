@@ -8,11 +8,12 @@ import Main from './components/Main/Main';
 
 function App() {
 	const routes = (
-		<Switch>
-			<Route path="/auth" />
-			<Route path="/" exact component={Main} />
-			<Redirect to="/" />
-		</Switch>
+		<>
+			<Switch>
+				<Route path="/" exact component={Main} />
+				<Redirect to="/" />
+			</Switch>
+		</>
 	);
 	return (
 		<div className={styles.App}>

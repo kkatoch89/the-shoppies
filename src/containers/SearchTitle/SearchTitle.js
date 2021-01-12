@@ -34,7 +34,7 @@ const SearchTitle = (props) => {
 	};
 
 	return (
-		<>
+		<div>
 			<h2>Movie Title</h2>
 			<form onSubmit={(e) => onSubmitHandler(e)}>
 				<input
@@ -45,7 +45,7 @@ const SearchTitle = (props) => {
 					ref={inputRef}
 				/>
 			</form>
-		</>
+		</div>
 	);
 };
 

@@ -1,4 +1,13 @@
 .Layout {
-	background: orangered;
-	height: 100%;
+	height: 100vh;
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	border: 1px solid orangered;
+}
+
+.Layout > header {
+	margin: 1rem 0;
 }

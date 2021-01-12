@@ -6,19 +6,21 @@ import * as actions from '../../store/actions/index';
 
 const Results = (props) => {
 	const [nominatedKeys, setNominatedKeys] = useState([]);
-	const moviesList = [];
-	const { nominatedMovies } = props;
+	// const [moviesList, setMoviesList] = useState([]);
+	const { nominatedMovies, moviesSearchResults } = props;
 
 	useEffect(() => {
 		const nomKeys = nominatedMovies.map((el) => el.movieId);
 		setNominatedKeys(nomKeys);
 	}, [nominatedMovies]);
 
-	for (let key in props.moviesSearchResults) {
+	const moviesList = [];
+
+	for (let key in moviesSearchResults) {
 		moviesList.push({
 			id: key,
-			title: props.moviesSearchResults[key].Title,
-			year: props.moviesSearchResults[key].Year,
+			title: moviesSearchResults[key].Title,
+			year: moviesSearchResults[key].Year,
 			nominated: nominatedKeys.find((el) => el === key) ? true : null,
 		});
 	}
@@ -46,7 +48,7 @@ const Results = (props) => {
 			<h2>
 				{props.query.trim().length !== 0
 					? `Results for ${props.query}`
-					: "Search for movies you'd like to nominate!"}
+					: "Search for movies you'd like to nominate"}
 			</h2>
 			<ul>{moviesListOutput}</ul>
 		</div>

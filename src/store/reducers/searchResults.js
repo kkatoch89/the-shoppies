@@ -4,7 +4,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
 	query: '',
 	movies: {},
-	error: {},
+	error: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				query: '',
 				movies: {},
-				error: {},
+				error: false,
 			};
 		default:
 			return state;
