@@ -14,9 +14,3 @@ export const removeNomination = (movieId) => {
 		movieId,
 	};
 };
-
-export const fetchNominationFailed = () => {
-	return {
-		type: actionTypes.FETCH_NOMINATION_FAILED,
-	};
-};

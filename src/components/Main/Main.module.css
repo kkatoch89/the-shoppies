@@ -1,5 +1,5 @@
 .Main {
-	border: 2px solid maroon;
+	/* border: 2px solid maroon; */
 	/* width: 100%; */
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -12,9 +12,10 @@
 .SearchTitle,
 .Results,
 .Nominations {
-	background: rgba(245, 244, 244, 0.9);
+	background: rgba(250, 235, 215, 0.9);
 	/* margin: 1rem 0; */
-	border-radius: 7px;
+	padding: 1.5rem;
+	border-radius: 3px;
 }
 
 .SearchTitle {

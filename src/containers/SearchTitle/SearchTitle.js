@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import styles from './SearchTitle.module.css';
 
 import * as actions from '../../store/actions/index';
 
@@ -35,15 +39,23 @@ const SearchTitle = (props) => {
 
 	return (
 		<div>
-			<h2>Movie Title</h2>
-			<form onSubmit={(e) => onSubmitHandler(e)}>
-				<input
-					type="text"
-					placeholder="Search"
-					value={searchInput}
-					onChange={(e) => onChangeHandler(e)}
-					ref={inputRef}
-				/>
+			<h2 className={styles.SearchHeading}>Movie Title</h2>
+			<form className={styles.Form} onSubmit={(e) => onSubmitHandler(e)}>
+				<div className={styles.SearchBarContainer}>
+					<input
+						className={styles.SearchBar}
+						id="search"
+						type="search"
+						placeholder="Search"
+						aria-label="Search"
+						value={searchInput}
+						onChange={(e) => onChangeHandler(e)}
+						ref={inputRef}
+					/>
+					<label htmlFor="search" className={styles.SearchIcon}>
+						<FontAwesomeIcon icon={faSearch} />
+					</label>
+				</div>
 			</form>
 		</div>
 	);

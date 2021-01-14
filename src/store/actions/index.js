@@ -1,8 +1,4 @@
-export {
-	addNomination,
-	removeNomination,
-	fetchNominationFailed,
-} from './nominations';
+export { addNomination, removeNomination } from './nominations';
 
 export {
 	searchReset,

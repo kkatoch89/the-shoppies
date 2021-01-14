@@ -1,0 +1,10 @@
+.ResultsContainer {
+	height: 50vh;
+	/* overflow: hidden; */
+	position: relative;
+}
+
+.ResultsList {
+	max-height: 80%;
+	overflow-y: scroll;
+}

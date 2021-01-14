@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import styles from './Results.module.css';
+
 import Card from '../../components/Main/Card/Card';
 import * as actions from '../../store/actions/index';
 
@@ -21,14 +23,14 @@ const Results = (props) => {
 			id: key,
 			title: moviesSearchResults[key].Title,
 			year: moviesSearchResults[key].Year,
-			nominated: nominatedKeys.find((el) => el === key) ? true : null,
+			nominated: nominatedKeys.find((el) => el === key),
 		});
 	}
 
 	const onClickHandler = (movieId) => {
 		const clickedMovie = props.moviesSearchResults[movieId];
 		props.onAddNomination(movieId, clickedMovie);
-		console.log(movieId, clickedMovie);
+		// console.log(movieId, clickedMovie);
 	};
 
 	const moviesListOutput = moviesList.map((movie) => {
@@ -44,13 +46,15 @@ const Results = (props) => {
 	});
 
 	return (
-		<div>
-			<h2>
-				{props.query.trim().length !== 0
-					? `Results for ${props.query}`
-					: "Search for movies you'd like to nominate"}
-			</h2>
-			<ul>{moviesListOutput}</ul>
+		<div className={styles.ResultsContainer}>
+			<div className={styles.TitleBox}>
+				<h2>
+					{props.query.trim().length !== 0
+						? `Results for "${props.query}"`
+						: "Search for movies you'd like to nominate"}
+				</h2>
+			</div>
+			<ul className={styles.ResultsList}>{moviesListOutput}</ul>
 		</div>
 	);
 };

@@ -23,7 +23,7 @@ const Nominations = (props) => {
 
 	return (
 		<div>
-			<h2>Nominations</h2>
+			<h2>Your 5 Nominations</h2>
 			<ul>{displayNominations}</ul>
 		</div>
 	);
